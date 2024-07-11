@@ -25,3 +25,18 @@ CREATE TABLE course_history(
     FOREIGN KEY (userId) REFERENCES users(id),
     FOREIGN KEY (courseId) REFERENCES course(id)
 );
+
+CREATE TABLE job(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    min_point INT NOT NULL
+);
+
+CREATE TABLE journal(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    time_stamp VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+	FOREIGN KEY (userId) REFERENCES users(id)
+);

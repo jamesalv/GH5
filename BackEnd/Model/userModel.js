@@ -37,4 +37,80 @@ async function getUserByUsername(username){
     }
 }
 
-module.exports = {createNewUser,getUserByUsername}
+async function updateUser(user){
+    const connection = await getConnection();
+    const hashedPassword = await hashPassword(user.password);
+    try{
+        const SQL = `UPDATE users SET name = ?,username = ?,password = ?,age = ?,gender = ? WHERE id = ?`;
+        const statement = [user.name,user.username,hashedPassword,user.age,user.gender,user.id];
+        const [result] = await connection.execute(SQL,statement);
+        //console.log(result);
+        return result;
+    }
+    catch(e){
+        return e;
+    }
+    finally{
+        await connection.end();
+    }
+}
+
+async function createCourseHistory(userId,courseId){
+    const connection = await getConnection();
+    try{
+        const SQL = `INSERT INTO course_history(userId,courseId) VALUES(?,?)`;
+        const statement = [userId,courseId];
+        const [result] = await connection.execute(SQL,statement);
+        
+        return result;
+    }
+    catch(e){
+        return e;
+    }
+    finally{
+        await connection.end();
+    }
+}
+
+async function getUserCourseHistoryById(id){
+    const connection = await getConnection();
+    try{
+        const SQL = `UPDATE users SET name = ?,username = ?,password = ?,age = ?,gender = ? WHERE id = ?`;
+        const statement = [id];
+        const [result] = await connection.execute(SQL,statement);
+        //console.log(result);
+        return result;
+    }
+    catch(e){
+        return e;
+    }
+    finally{
+        await connection.end();
+    }
+}
+
+async function updateUserPoint(id,point){
+    const connection = await getConnection();
+    try{
+        const SQL = `UPDATE users SET point = point + ? WHERE id = ?`;
+        const statement = [point,id];
+        const [result] = await connection.execute(SQL,statement);
+        //console.log(result);
+        return result;
+    }
+    catch(e){
+        return e;
+    }
+    finally{
+        await connection.end();
+    }
+}
+
+module.exports = {
+    createNewUser,
+    getUserByUsername,
+    updateUser,
+    createCourseHistory,
+    getUserCourseHistoryById,
+    updateUserPoint
+}
