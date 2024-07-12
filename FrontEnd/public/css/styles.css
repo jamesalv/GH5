@@ -10828,6 +10828,10 @@ textarea.form-control-lg {
   overflow-x: hidden;
 }
 
+#entry-wrapper{
+  max-width: 75%;
+}
+
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
@@ -10850,7 +10854,10 @@ textarea.form-control-lg {
 body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   margin-left: 0;
 }
-
+.btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
 @media (min-width: 768px) {
   #sidebar-wrapper {
     margin-left: 0;
