@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <style>
+
+        .courseHeader {
+            background-color: #ffbb00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .stepDetailHeader {
+            background-color: #ffbb00;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #ffbb00; /* Change this color to whatever you want for the expanded state */
+        }
+
+        .accordion-button.collapsed {
+            background-color: #ffcc66; /* Change this color to whatever you want for the collapsed state */
+        }
+
+        .text-muted p{
+            margin: 0;
+        }   
+
+    </style>
+
+</head>
+<body>
+
+<div class="container courseHeader">
+    <div>
+        <p class="fw-bold fs-4 mb-0">Pre Calculus</p>
+    </div>
+    <div class="mt-3">
+        <div>
+            <p class="text-muted fw-bold mb-0 mt-0">Description</p>
+        </div>
+        <div>
+            <p style="color: black;">Precalculus is a mathematical course or a set of courses that act as a foundation for calculus. The two main topics that are included under precalculus are algebra and trigonometry.</p>
+        </div>
+    </div>
+    <div class="mt-3">
+        <button class="btn btn-outline-dark">Start</button>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="ratio ratio-16x9">
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/eI4an8aSsgw"></iframe>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="d-flex justify-content-center">
+        <div>
+            <button class="btn btn-outline-dark">Finish</button>
+        </div>
+        <div class="china-points">
+            <p style="margin-top: 5px; margin-left: 5px;">+10 Points</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <div class="accordion-button stepDetailHeader collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div class="flex-column">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <p class="fw-bold fs-5 mb-0">Course Details</p>
+                            </div>
+                        </div>
+                        <div class="=d-flex">
+                            <div class="text-muted mt-2">
+                                <p style="margin: 0;">Course Details</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="text-muted stepsMargin">
+                        <p>Functions</p>
+                            <p>Increasing and Decreasing Functions</p>
+                            <p>Maximums and minimums on graphs</p>
+                            <p>Even and Odd Functions</p>
+                            <p>Toolkit Functions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
