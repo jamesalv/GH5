@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Journal Page</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light d-flex justify-content-between align-items-center">
+                Journal List
+                <a href="/journal_entry">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+            
+            <% journals.forEach(journal=> { %>
+                <div class="list-group list-group-flush border-bottom scrollarea nonactive" >
+                    <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" style="padding-left: 16px;padding-right: 16px;" aria-current="true">
+                        <div class="d-flex w-100 align-items-center justify-start">
+                            <strong>
+                                <%= journal.time_stamp %>
+                            </strong>
+                        </div>
+                        <div class="col-10 mb-1 small">
+                            <p style="max-width:200px;white-space: wrap;max-height: 50px;padding-bottom: 100px;overflow: hidden;">
+                                <%= journal.content %>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <%}) %>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="sidebarToggle">
+                        <i class="fa-solid fa-angles-left" id="toggleIcon"></i>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                            <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#!">Action</a>
+                                    <a class="dropdown-item" href="#!">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#!">Something else here</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page content-->
+            <div class="container-fluid">
+                <h1 class="mt-4" id="tanggalJournal">Tanggal</h1>
+                <p id="contentJournal">Journal content</p>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script>
+        const tanggal = document.getElementById('tanggalJournal')
+        const content = document.getElementById('contentJournal')
+        
+        const link = document.querySelectorAll('.list-group')
+
+        link.forEach(links => {
+            links.addEventListener('click', (e) => {
+                console.log(e.currentTarget);
+                console.log(e.currentTarget.firstElementChild.childNodes[1].innerText);
+                tanggal.innerHTML = e.currentTarget.firstElementChild.childNodes[1].innerText
+                content.innerHTML = e.currentTarget.firstElementChild.childNodes[3].innerText
+            })
+        })
+
+   
+
+
+    </script>
+</body>
+
+</html>
