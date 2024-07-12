@@ -3,10 +3,11 @@ const timestamp = require("../helper/timestamp");
 
 async function createNewJournal(newJournal){
     const connection = await getConnection();
-
+    console.log(newJournal);
     try{
         const SQL = `INSERT INTO journal(userId,time_stamp,content) VALUES (?,?,?)`;
         const statement = [newJournal.userId,timestamp(),newJournal.content];
+        console.log(statement);
         const [result] = await connection.execute(SQL,statement);
  
     }

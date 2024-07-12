@@ -5,6 +5,7 @@ const courseRouter = require("./Routes/courseApi");
 const authRouter = require("./Routes/authAPI");
 const jobRouter = require("./Routes/jobApi");
 const journalRouter = require("./Routes/journalApi");
+const chatBotRouter = require("./Routes/chatbotApi");
 const logger = require("./middleware/sanitize");
 const sanitize = require("./middleware/sanitize");
 const app = express();
@@ -20,6 +21,7 @@ app.use('/api/user',userRouter);
 app.use('/api/course',courseRouter);
 app.use('/api/job',jobRouter);
 app.use('/api/journal',journalRouter);
+app.use('/api/chat',chatBotRouter);
 
 app.get('/',(req,res)=>{
     return res.status(200).send("YOOO");
