@@ -11,6 +11,6 @@ async function getConnection(){
     return connection;
 }
 
-getConnection()
+getConnection();
 
 module.exports = getConnection;

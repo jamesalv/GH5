@@ -1,13 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const {createNewJournal,getAllJournalByUserId} = require("../Model/journalModel");
+const journal_validate = require("../helper/journal_validator");
 
 router.post('/',async (req,res)=>{
 
     try{
-        //cek ke model AI apakah journal sesuai ato tdk
+        const validateJournal = await journal_validate(req.body.content);
+
+        if(validateJournal.success !== 'Journal is valid!')
+            return res.status(400).send(validateJournal);
+
         await createNewJournal(req.body)
-        return res.status(200).send({message:`sucessfully create new journal`});
+        return res.status(201).send({message:`sucessfully create new journal`});
     }
     catch(err){
         console.log(err);
