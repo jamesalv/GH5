@@ -13,11 +13,6 @@
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <style>
-        .card {
-            flex-shrink: 0;
-            margin-left: 30px;
-        }
-
         .nunito-sans {
             font-family: "Nunito Sans", sans-serif;
             font-optical-sizing: auto;
@@ -29,11 +24,6 @@
 
         body {
             font-family: "Nunito Sans";
-            font-weight: bolder;
-        }
-
-        .card-img-top {
-            width: 100px;
         }
     </style>
 </head>
@@ -52,7 +42,7 @@
                         <a class="nav-link active" aria-current="page" href="/to-jobs">Jobs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/journal">Journal</a>
+                        <a class="nav-link" href="/to-journal">Journal</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/to-services">Services</a>
@@ -65,49 +55,11 @@
         </div>
     </nav>
 
-    <div class="container-fluid"
-        style="padding-top: 80px;background-image: linear-gradient(to bottom,#FFA823, #FFD35A);">
-        <div class="row">
-            <div class="col-12 d-flex">
-                <div style="padding: 10px;border-radius: 10px;color: white;">
-                    <h1 style="margin: 0;">Hello, <%= user.name %> <span class="badge text-bg-light"
-                                style="font-weight: lighter;">
-                                <%= user.point %> Point
-                            </span></h1>
-                </div>
-            </div>
-
-
-
-            <div class="col-12 mt-5 mb-3 d-flex">
-                <div style="padding: 15px;color: white;">
-                    <h2>Community Service</h2>
-                </div>
-            </div>
-            <div class="col-12" style="padding: 15px;">
-                <div style="display: flex;flex-wrap: nowrap;overflow-x: scroll;">
-                    <div class="card d-flex align-items-center"
-                        style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/McDonald's_Golden_Arches.svg.png"
-                            alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-weight: 300;">Card title</h5>
-                            <p class="card-text" style="font-weight: 700;">Some quick example text to build on the card
-                                title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-warning" style="color: white;font-weight: bolder;">Go
-                                somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="text-center pt-5 pb-4" style="background-image: linear-gradient(to bottom, #FFD35A, #FFA823);">
-        <h1 style="color: white;">Video</h1>
+    <div class="text-center pt-5" style="background-image: linear-gradient(to bottom, #FFD35A, #FFA823);height: 100vh;">
+        <h1>All Jobs</h1>
         <div class="container"
-            style="background-color: white;margin-top: 20px;height: 400px;margin-bottom: 100px;overflow: scroll;padding: 50px;border-radius: 10px;">
+            style="background-color: white;margin-top: 20px;height: 50vh;margin-bottom: 100px;overflow: scroll;padding: 50px;border-radius: 10px;">
+
             <div
                 style="background-color: #FFD35A;width: 85%;margin: 0 auto;margin-bottom: 80px;border-radius: 10px;padding: 10px;">
                 <div class="container-fluid">
@@ -117,24 +69,28 @@
                         </div>
                         <div
                             class="col-12 col-md-6 d-flex justify-content-center align-items-center flex-column text-start">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere repellendus qui vitae
-                                doloribus iure pariatur voluptates consectetur nemo, deserunt odit nesciunt molestiae a
-                                aliquam aliquid libero ad itaque ipsam dicta?</p>
-                            <button type="button" class="btn btn-outline-dark" style="font-weight: bolder;">Watch
-                            </button>
-                            <span class="badge badge-pill badge-dark" style="color: black;">50</span>
+                            <h1>Title</h1>
+                            <p>Description</p>
+                            <p>Point Required <span class="badge text-bg-danger">50</span></p>
+                            <!-- 50 -> point minimum -->
+                            <% if(user.point < 50){%>
+                                <button type="button" class="btn btn-outline-secondary" disabled>Apply</button>
+                                <%}else{ %>
+                                    <button type="button" class="btn btn-outline-primary">Apply</button>
+                                    <%} %>
                         </div>
                     </div>
                 </div>
             </div>
 
+
         </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>
