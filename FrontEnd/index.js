@@ -26,7 +26,7 @@ app.set('views', path.join(__dirname, 'public'));
 
 app.use(express.static(path.join(dirname, 'public')));
 
-function checkAuth(req, res, next) { 
+function checkAuth(req, res, next) {
     if (!req.session.user) {
         req.flash('error', 'You must be logged in to view this page.');
         return res.redirect('/login');
@@ -62,7 +62,7 @@ app.get('/journal_entry', checkAuth, (req, res) => {
     res.render('journal_entry', { user: req.session.user })
 })
 
-app.get('/to-user', checkAuth,async (req, res) => {
+app.get('/to-user', checkAuth, async (req, res) => {
 
     // try {
     //     const jobFetch = await axios.get('link')
@@ -82,20 +82,65 @@ app.get('/to-login', (req, res) => {
     res.render('login')
 })
 
-app.get('/to-services', checkAuth,(req, res) => {
+app.get('/to-services', checkAuth, (req, res) => {
     res.render('services', { user: req.session.user })
 })
 
-app.get('/to-jobs', checkAuth,(req, res) => {
-    res.render('jobs', { user: req.session.user })
+app.get('/to-jobs', checkAuth, async (req, res) => {
+
+    try{
+        const jobs = await axios.get('http://172.25.116.217:8000/api/job')
+        const jobsResponse = jobs.data;
+        res.render('jobs', { user: req.session.user, jobs : jobsResponse })
+    }catch(err){
+        res.status(400).send(`${err.message}`)
+    }
+
 })
 
 app.get('/to-register', (req, res) => {
     res.sendFile(path.join(dirname, 'public', 'register.html'))
 })
 
-app.get('/to-course', checkAuth,(req, res) => {
-    res.render('course', { user: req.session.user })
+app.get('/to-course', checkAuth, async (req, res) => {
+    try {
+        const course = await axios.get('http://172.25.116.217:8000/api/course');
+        const data = course.data;
+        res.render('course', { user: req.session.user, courses: data })
+    } catch (err) {
+        res.status(400).send(`${err}`)
+    }
+
+})
+
+app.get('/course-track', (req, res) => {
+
+    const courseId = req.query.courseId
+
+    console.log(courseId);
+
+    res.redirect(`/course-track/${courseId}`)
+
+})
+
+app.get('/course-track/:courseId', async (req, res) => {
+
+    const courseId = req.params.courseId
+    console.log(courseId);
+
+    try {
+        const course = await axios.get(`http://172.25.116.217:8000/api/course/${courseId}`)
+        console.log(course.data[0]);
+        const obj1 = course.data[0];
+        res.render('coursetrack', { course: obj1 })
+    } catch (err) {
+        res.status(400).send(`${err.message}`)
+    }
+
+})
+
+app.get('/to-chat', checkAuth, (req, res) => {
+    res.sendFile(path.join(dirname, 'public', 'chatbot.html'))
 })
 
 app.post('/login', async (req, res) => {
@@ -138,18 +183,56 @@ app.post('/register', async (req, res) => {
 
 })
 
+app.post('/updatePoint', checkAuth, async (req, res) => {
+
+    const userId = req.session.user.id;
+    let userPoint = req.session.user.point
+    console.log(userId, userPoint);
+
+    const CoursePoint  = req.body.Coursepoint;
+    const intPoint = parseInt(CoursePoint)
+
+    console.log(CoursePoint);
+    try {
+        userPoint = userPoint + intPoint
+        req.session.user.point = userPoint
+        console.log(userPoint);
+        const newPoint = await axios.put(`http://172.25.116.217:8000/api/user/${userId}/update-point`, { point: userPoint })
+        console.log(newPoint.status);
+        res.redirect('/to-course');
+    } catch (err) {
+        res.status(400).send(`${err.message}`)
+    }
+
+})
+
 app.post('/send-journal', checkAuth, async (req, res) => {
 
     const { content } = req.body
 
     const userId = req.session.user.id;
-
+    const userPoint = req.session.user.point
+    console.log(userPoint + 'ini point');
     try {
         const journal = await axios.post('http://172.25.116.217:8000/api/journal', { userId, content })
         const errorLog = journal.data.error
+        console.log(journal);
         if (journal.status === 201) {
-            res.redirect('journal')
-        }else{
+            try {
+                // const currentPoints = userPoint
+                // currentPoints = currentPoints + 5
+                const plusPoint = userPoint + 5
+                console.log(plusPoint);
+                req.session.user.point = plusPoint
+                const newPoint = await axios.put(`http://172.25.116.217:8000/api/user/${userId}/update-point`, { point: plusPoint })
+                console.log(`Users point updated to ${req.session.user.point}`);
+                console.log(newPoint);
+                res.redirect('/journal')
+            } catch (err) {
+                console.log(err);
+                req.flash('error', `${err}`)
+            }
+        } else {
             req.flash('error', `${errorLog}`)
             res.redirect('/journal_entry');
         }
@@ -164,6 +247,6 @@ app.post('/send-journal', checkAuth, async (req, res) => {
 })
 
 
-app.listen(5000, () => {
+app.listen(5000, "0.0.0.0", () => {
     console.log('server is running on port 5000');
 });
