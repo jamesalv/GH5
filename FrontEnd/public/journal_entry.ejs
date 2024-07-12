@@ -11,6 +11,31 @@
 
 <body>
 
+    <nav class="navbar">
+        <div class="container-fluid">
+            <h1 style="text-decoration: none;">SecondChance</h1>
+            <form class="d-flex">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/to-user">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/to-jobs">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/journal">Journal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/to-course">Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/to-chat">Chatbot</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </nav>
+
     <div id="entry-wrapper" class="d-flex container-fluid flex-column align-items-center">
         <div class="journal-entry container-fluid form-container">
             <h1 class="dateToday">Friday, 12 July 2024</h1>
@@ -53,7 +78,7 @@
         const dayToday = document.querySelector('.dateToday')
         dayToday.innerHTML = `${day}-${month}-${year}`
 
-        console.log(year,month,day);
+        console.log(year, month, day);
 
     </script>
 </body>

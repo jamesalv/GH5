@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/chatbot.css">
 </head>
+
 <body>
+
+    <nav class="navbar">
+        <div class="container-fluid">
+            <img src="assets/img/newLogo.png" alt="" width="50">
+            <form class="d-flex">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/to-user">Home</a>
+                    </li>                           
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/to-jobs">Jobs</a>
+                    </li>   
+                    <li class="nav-item">
+                        <a class="nav-link" href="/journal">Journal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/to-course">Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/to-chat">Chatbot</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </nav>
+    
     <div id="chat-container" class="d-flex flex-column justify-content-end vh-100 py-5 container-fluid">
         <div id="chat-box" class="overflow-auto mb-2 flex-grow-1">
             <div class="d-flex align-items-center mb-3">
                 <div class="d-flex align-items-center mr-2">
-                    <i class="fas fa-robot bg-dark text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 25px; height: 25px;"></i>
+                    <i class="fas fa-robot bg-dark text-white rounded-circle d-flex justify-content-center align-items-center"
+                        style="width: 25px; height: 25px;"></i>
                 </div>
                 <div class="bg-light p-2 rounded">
                     <p class="mb-0">Hi, How Can I Help You?</p>
@@ -21,15 +52,16 @@
             </div>
             <div class="d-flex align-items-center justify-content-end mb-3">
                 <div class="bg-light p-2 rounded mr-2">
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis eum dolores nisi magnam nemo enim adipisci amet ad iure animi!</p>
+                    
                 </div>
                 <div class="overflow-hidden">
-                    <i class="fas fa-user bg-dark text-white rounded-circle d-flex justify-content-center align-items-center", style="width: 25px; height: 25px;"></i>
+                    <i class="fas fa-user bg-dark text-white rounded-circle d-flex justify-content-center align-items-center"
+                        , style="width: 25px; height: 25px;"></i>
                 </div>
             </div>
         </div>
         <div id="user-message-input" class="input-group">
-            <input type="text" class="form-control" placeholder="Type your message here..." id = "user-input">
+            <input type="text" class="form-control" placeholder="Type your message here..." id="user-input">
             <div class="input-group-append">
                 <button class="btn btn-info" id="send-btn">
                     <i class="fas fa-paper-plane"></i>
@@ -40,6 +72,79 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/chatbot.js"></script>
+    <!-- <script src="js/chatbot.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sendButton = document.getElementById("send-btn");
+            const inputField = document.getElementById("user-input");
+            const chatBox = document.getElementById("chat-box");
+
+            // Function to create a message row
+            function createMessageRow(message, isUser = true) {
+                const messageRow = document.createElement("div");
+                messageRow.className = isUser ? "d-flex align-items-center justify-content-end mb-3" : "d-flex align-items-center mb-3";
+
+                const messageContent = document.createElement("div");
+                messageContent.className = "bg-light p-2 rounded";
+                messageContent.style.maxWidth = "500px";
+                messageContent.innerHTML = `<p class="mb-0">${message}</p>`;
+
+                const messageIcon = document.createElement("div");
+                messageIcon.className = "overflow-hidden";
+                if (isUser) {
+                    messageIcon.innerHTML = '<i class="fas fa-user bg-dark text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 25px; height: 25px;"></i>'
+                    messageRow.appendChild(messageContent);
+                    messageRow.appendChild(messageIcon);
+                } else {
+                    messageIcon.innerHTML = '<i class="fas fa-robot bg-dark text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 25px; height: 25px;"></i>';
+                    messageRow.appendChild(messageIcon);
+                    messageRow.appendChild(messageContent);
+                }
+
+                return messageRow;
+            }
+
+            sendButton.addEventListener("click", () => {
+                const message = inputField.value;
+                if (!message) return; // Avoid sending empty messages
+
+                inputField.value = "";
+                chatBox.appendChild(createMessageRow(message));
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                setTimeout(async () => {
+                    try {
+                        const botResponse = await getResponse(message);
+                        console.log(botResponse);
+                        chatBox.appendChild(createMessageRow(botResponse, false));
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    } catch (error) {
+                        console.error("Error fetching bot response:", error);
+                        chatBox.appendChild(createMessageRow("Error fetching response. Please try again.", false));
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    }
+                }, 1500);
+            });
+
+            async function getResponse(userMessage) {
+                try {
+                    const response = await axios.post('http://172.25.116.217:9000/', {
+                        input: userMessage
+                    }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    console.log(response);
+                    return response.data.message; // Assuming the API response has a field 'message'
+                } catch (error) {
+                    console.error('Error:', error);
+                    throw error;
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>

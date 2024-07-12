@@ -32,7 +32,7 @@
 
     <nav class="navbar">
         <div class="container-fluid">
-            <h1 style="text-decoration: none;">SecondChance</h1>
+            <img src="assets/img/newLogo.png" alt="" width="50">
             <form class="d-flex">
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
@@ -40,48 +40,81 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/to-jobs">Jobs</a>
-                    </li>   
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/journal">Journal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/to-services">Services</a>
+                        <a class="nav-link" href="/to-course">Course</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/to-course">Course</a>
+                        <a class="nav-link" href="/to-chat">Chatbot</a>
                     </li>
                 </ul>
             </form>
         </div>
     </nav>
 
-    <div class="text-center pt-5" style="background-image: linear-gradient(to bottom, #FFD35A, #FFA823);height: 100vh;">
+    <div class="text-center pt-5" style="background-image: linear-gradient(to bottom, #FFD35A, #FFA823);">
         <h1>All Jobs</h1>
-        <div class="container"
-            style="background-color: white;margin-top: 20px;height: 50vh;margin-bottom: 100px;overflow: scroll;padding: 50px;border-radius: 10px;">
+        <div class="container d-flex flex-wrap justify-content-center mt-5">
+            <% jobs.forEach(job=> { %>
+                <div class="col-md-6 col-lg-4 mb-4 custom-container"
+                    style="flex-shrink: 0;margin-right: 50px;margin-left: 50px;">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <p class="card-subtitle text-muted fs-7">Jobs</p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="card-title fs-5">
+                                    <%= job.title%>
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="card-text text-muted textSmall">
+                                    <%= job.description %>
+                                </p>
+                            </div>
 
-            <div
-                style="background-color: #FFD35A;width: 85%;margin: 0 auto;margin-bottom: 80px;border-radius: 10px;padding: 10px;">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 col-md-6 col d-flex justify-content-center">
-                            <img src="Untitled.svg" alt="" width="400px">
-                        </div>
-                        <div
-                            class="col-12 col-md-6 d-flex justify-content-center align-items-center flex-column text-start">
-                            <h1>Title</h1>
-                            <p>Description</p>
-                            <p>Point Required <span class="badge text-bg-danger">50</span></p>
-                            <!-- 50 -> point minimum -->
-                            <% if(user.point < 50){%>
-                                <button type="button" class="btn btn-outline-secondary" disabled>Apply</button>
-                                <%}else{ %>
-                                    <button type="button" class="btn btn-outline-primary">Apply</button>
-                                    <%} %>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="pointsInfo">
+                                    <p class="points" style="margin: 0;">
+                                        <span class="badge badge-pill badge-dark"
+                                            style="color: black;background-color: red;color: white;">
+                                            <%= job.min_point %> Points
+                                        </span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <% if(user.point < job.min_point){%>
+                                        <button type="button" class="btn btn-outline-secondary" disabled >Apply</button>
+                                        <%}else{ %>
+                                            <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle"
+                                                role="button">Apply</a>
+                                            <%} %>
+                                </div>
+                                <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                                    aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalToggleLabel">Success</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Registration Successful. Please Check Your Email Frequently
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <%}) %>
 
 
         </div>
