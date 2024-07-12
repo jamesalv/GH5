@@ -42,7 +42,7 @@
 
     <nav class="navbar">
         <div class="container-fluid">
-            <img src="assets/img/newLogo.png" alt="" width="50">
+            <img src="assets/img/SecondChanceLogoV2.png" alt="" width="50">
             <form class="d-flex">
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
@@ -77,8 +77,6 @@
                 </div>
             </div>
 
-
-
             <div class="col-12 mt-5 mb-3 d-flex">
                 <div style="padding: 15px;color: white;">
                     <h2>Community Service</h2>
@@ -88,11 +86,10 @@
                 <div style="display: flex;flex-wrap: nowrap;overflow-x: scroll;">
                     <div class="card d-flex align-items-center"
                         style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/beachCleanup.png" alt="Card image cap"
-                            style="width: 220px;">
+                        <img class="card-img-top" src="./assets/img/beachCleanup.png" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-weight: bolder;">Beach Cleanup Extravaganza</h5>
-                            <p class="card-text">Join us for a day of cleaning up our
+                            <h5 class="card-title" style="font-weight: 300;">Beach Cleanup Extravaganza</h5>
+                            <p class="card-text" style="font-weight: 700;">Join us for a day of cleaning up our
                                 beautiful beaches! Help remove trash and debris to keep our shores pristine and safe for
                                 wildlife.</p>
                             <p>Saturday, August 10th, 9:00 AM - 12:00 PM</p>
@@ -102,11 +99,10 @@
 
                     <div class="card d-flex align-items-center"
                         style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/SoupKitchenVolunteer.png" alt="Card image cap"
-                            style="width: 220px;height: 120px;">
+                        <img class="card-img-top" src="./assets/img/SoupKitchenVolunteer.png" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-weight: bolder;">Soup Kitchen Volunteer Day</h5>
-                            <p class="card-text">Spend your day helping to prepare and serve
+                            <h5 class="card-title" style="font-weight: 300;">Soup Kitchen Volunteer Day</h5>
+                            <p class="card-text" style="font-weight: 700;">Spend your day helping to prepare and serve
                                 meals to those in need. Your efforts will provide a warm meal and a friendly face to the
                                 community.</p>
                             <p>Sunday, August 18th, 11:00 AM - 2:00 PM</p>
@@ -116,11 +112,10 @@
 
                     <div class="card d-flex align-items-center"
                         style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/ParkBeautification.jpg" alt="Card image cap"
-                            style="width: 220px;height: 120px;">
+                        <img class="card-img-top" src="./assets/img/ParkBeautification.jpg" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-weight: bolder;">Park Beautification Project</h5>
-                            <p class="card-text">Help us make our local park a more beautiful
+                            <h5 class="card-title" style="font-weight: 300;">Park Beautification Project</h5>
+                            <p class="card-text" style="font-weight: 700;">Help us make our local park a more beautiful
                                 place! Activities include planting flowers, painting benches, and picking up litter.</p>
                             <p>Saturday, September 7th, 8:00 AM - 11:00 AM</p>
                             <p>Greenfield Park, Oak Grove Pavilion</p>
@@ -129,11 +124,10 @@
 
                     <div class="card d-flex align-items-center"
                         style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/ElderlyVisit.jpg" alt="Card image cap"
-                            style="width: 220px;height: 120px;">
+                        <img class="card-img-top" src="./assets/img/ElderlyVisit.jpg" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-weight: bolder;">Elderly Home Visit</h5>
-                            <p class="card-text">Spend quality time with the elderly residents
+                            <h5 class="card-title" style="font-weight: 300;">Elderly Home Visit</h5>
+                            <p class="card-text" style="font-weight: 700;">Spend quality time with the elderly residents
                                 of Sunnyvale Retirement Home. Engage in conversations, play games, and bring joy to
                                 their day.</p>
                             <p>Wednesday, August 21st, 3:00 PM - 5:00 PM</p>
@@ -142,11 +136,10 @@
                     </div>
                     <div class="card d-flex align-items-center"
                         style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/GardenPlanting.jpg" alt="Card image cap"
-                            style="width: 220px;height: 120px;">
+                        <img class="card-img-top" src="./assets/img/GardenPlanting.jpg" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-weight: bolder;">Community Garden Planting</h5>
-                            <p class="card-text">Get your hands dirty by helping to plant and
+                            <h5 class="card-title" style="font-weight: 300;">Community Garden Planting</h5>
+                            <p class="card-text" style="font-weight: 700;">Get your hands dirty by helping to plant and
                                 maintain a community garden. This initiative promotes local food production and green
                                 spaces.</p>
                             <p>Saturday, September 14th, 10:00 AM - 1:00 PM</p>
