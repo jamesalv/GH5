@@ -3,10 +3,10 @@ require("dotenv").config();
 
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
-async function chat(userHistory, input) {
+async function chat(input) {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    if (userHistory.length === 0) {
+
         input = `You are an AI-based Customer Service of an application called 'SecondChance', which is an app for ex-prisoners/ex-convicts to get their second chance back into the community. Here are the main features:
         1. Home 
         2. User Dashboard
@@ -18,10 +18,10 @@ async function chat(userHistory, input) {
         Here is a question from the user:
 
         ` + input;
-    }
+    
 
     const chat = model.startChat({
-        history: userHistory,
+        history: [],
         generationConfig: {
             maxOutputTokens: 500,
         }
@@ -33,10 +33,8 @@ async function chat(userHistory, input) {
         const text = await response.text();
         const cleanText = text.replace(/\*/g, " ");
 
-        // Update the userHistory directly
-        userHistory.push({ prompt: input, response: cleanText });
 
-        return { result: cleanText, history: userHistory };
+        return { result: cleanText };
     } catch (error) {
         console.error("Error sending message:", error);
         throw error;

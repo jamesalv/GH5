@@ -9,12 +9,11 @@ app.use(express.json());
 app.post('/',async (req,res)=>{
     try{
 
-        
-
         const respond = await chat(req.body.input);
         return res.status(200).send({message:respond});
     }
     catch(err){
+        console.log(err);
         return res.status(500).send({message:"server jebluk"});
     }
 });
