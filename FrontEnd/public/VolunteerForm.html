@@ -33,14 +33,14 @@
 <body>
     <div class="container">
         <h2 class="mb-4 text-center">Submit Community Service Volunteering Evidence</h2>
-        <form>
+        <form action="/volunteerPoint" method="post">
             <div class="mb-3">
                 <label for="eventName" class="form-label">Event Name</label>
                 <input type="text" class="form-control" id="eventName" placeholder="Enter the name of the event" required>
             </div>
             <div class="mb-3">
                 <label for="eventDateTime" class="form-label">Date and Time</label>
-                <input type="datetime-local" class="form-control" id="eventDateTime" required>
+                <input type="date" class="form-control" id="eventDateTime" required>
             </div>
             <div class="mb-3">
                 <label for="eventPhoto" class="form-label">Photo</label>

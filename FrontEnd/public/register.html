@@ -10,13 +10,16 @@
         input {
             margin-bottom: 10px;
             border-radius: 5px;
-            border: 1px solid black ;
+            border: 1px solid black;
             padding: 10px;
         }
-        body{
-            background-image: linear-gradient(to right, #FFD35A, #f19711);;
+
+        body {
+            background-image: linear-gradient(to right, #FFD35A, #f19711);
+            ;
         }
-        form{
+
+        form {
             background-color: white;
         }
     </style>
@@ -25,40 +28,43 @@
 
 <body>
     <div class="main-container">
-      <div class="img-container">
-        <img src="assets/img/registerImage.jpg"/>
-      </div>
-      <div class="form-container d-flex">
-        <form class="container d-flex flex-column justify-content-center text-center align-items-center" action="/register" method="POST">
-            <h1>Register</h1>
-            <div class="row justify-content-center mt-5">
-                <div class="col-6 md-5">
-                    <input type="text" id="name" name="name" placeholder="Name" required>
-                    <br>
-                    <input type="text" id="username" name="username" placeholder="Username" required>
-                    <br>
-                    <input type="number" id="age" name="age" placeholder="Age" required>
-                    <br>
-                     <input type="text" id="address" name="address" placeholder="Address" required>
-                    <br> 
-                </div>
-                <div class="col-6 md-5">
-                    <div class="form-group">
-                        <select class="form-control" id="gender" name="gender">
-                            <option>Choose your gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
+        <div class="img-container">
+            <img src="assets/img/registerImage.jpg" />
+        </div>
+        <div class="form-container d-flex">
+            <form class="container d-flex flex-column justify-content-center text-center align-items-center"
+                action="/register" method="POST">
+                <h1>Register</h1>
+                <div class="row justify-content-center mt-5">
+                    <div class="col-6 md-5">
+                        <input type="text" id="name" name="name" placeholder="Name" required>
+                        <br>
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                        <br>
+                        <input type="number" id="age" name="age" placeholder="Age" required>
+                        <br>
+                        <input type="text" id="address" name="address" placeholder="Address" required>
+                        <br>
                     </div>
-                    <br>
-            
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                    <br>
+                    <div class="col-6 md-5">
+                        <div class="form-group">
+                            <select class="form-control" id="gender" name="gender">
+                                <option>Choose your gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <br>
+
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <br>
+                    </div>
+
+                    <button class="mt-5 btn btn-outline-dark md-auto" type="submit">Register</button>
                 </div>
-                
-                <button class="mt-5 btn btn-outline-dark md-auto" type="submit">Register</button>
-            </div>
-        </form>
+            </form>
+        </div>
+    </div>  
 </body>
 
 </html>

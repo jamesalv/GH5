@@ -47,7 +47,7 @@ app.get('/journal', checkAuth, async (req, res) => {
     const userId = req.session.user.id;
 
     try {
-        const response = await axios.get(`http://172.25.116.217:8000/api/journal/${userId}`);
+        const response = await axios.get(`https://backend2.wisnuputra.xyz/api/journal/${userId}`);
         const journals = response.data;
         console.log(journals);
         res.render('journal', { user: req.session.user, journals });
@@ -88,11 +88,11 @@ app.get('/to-services', checkAuth, (req, res) => {
 
 app.get('/to-jobs', checkAuth, async (req, res) => {
 
-    try{
-        const jobs = await axios.get('http://172.25.116.217:8000/api/job')
+    try {
+        const jobs = await axios.get('https://backend2.wisnuputra.xyz/api/job')
         const jobsResponse = jobs.data;
-        res.render('jobs', { user: req.session.user, jobs : jobsResponse })
-    }catch(err){
+        res.render('jobs', { user: req.session.user, jobs: jobsResponse })
+    } catch (err) {
         res.status(400).send(`${err.message}`)
     }
 
@@ -104,7 +104,7 @@ app.get('/to-register', (req, res) => {
 
 app.get('/to-course', checkAuth, async (req, res) => {
     try {
-        const course = await axios.get('http://172.25.116.217:8000/api/course');
+        const course = await axios.get('https://backend2.wisnuputra.xyz/api/course');
         const data = course.data;
         res.render('course', { user: req.session.user, courses: data })
     } catch (err) {
@@ -129,7 +129,7 @@ app.get('/course-track/:courseId', async (req, res) => {
     console.log(courseId);
 
     try {
-        const course = await axios.get(`http://172.25.116.217:8000/api/course/${courseId}`)
+        const course = await axios.get(`https://backend2.wisnuputra.xyz/api/course/${courseId}`)
         console.log(course.data[0]);
         const obj1 = course.data[0];
         res.render('coursetrack', { course: obj1 })
@@ -148,7 +148,7 @@ app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const login = await axios.post('http://172.25.116.217:8000/api/auth/login', { username, password })
+        const login = await axios.post('https://backend2.wisnuputra.xyz/api/auth/login', { username, password })
         console.log(login);
         if (login.status === 200) {
             const userData = login.data
@@ -168,7 +168,7 @@ app.post('/register', async (req, res) => {
     console.log(gender);
 
     try {
-        const newUser = await axios.post('http://172.25.116.217:8000/api/auth/register', { username, name, age, gender, password })
+        const newUser = await axios.post('https://backend2.wisnuputra.xyz/api/auth/register', { username, name, age, gender, password })
         console.log(username, name, age, gender, password);
         console.log(newUser.status);
         if (newUser.status === 201) {
@@ -189,7 +189,7 @@ app.post('/updatePoint', checkAuth, async (req, res) => {
     let userPoint = req.session.user.point
     console.log(userId, userPoint);
 
-    const CoursePoint  = req.body.Coursepoint;
+    const CoursePoint = req.body.Coursepoint;
     const intPoint = parseInt(CoursePoint)
 
     console.log(CoursePoint);
@@ -197,12 +197,36 @@ app.post('/updatePoint', checkAuth, async (req, res) => {
         userPoint = userPoint + intPoint
         req.session.user.point = userPoint
         console.log(userPoint);
-        const newPoint = await axios.put(`http://172.25.116.217:8000/api/user/${userId}/update-point`, { point: userPoint })
+        const newPoint = await axios.put(`https://backend2.wisnuputra.xyz/api/user/${userId}/update-point`, { point: userPoint })
         console.log(newPoint.status);
         res.redirect('/to-course');
     } catch (err) {
         res.status(400).send(`${err.message}`)
     }
+
+})
+
+app.post('/volunteerPoint', async (req, res) => {
+
+    const userId = req.session.user.id;
+    let userPoint = req.session.user.point
+    console.log(userId, userPoint);
+
+    const vPoint = 25;
+
+    console.log(vPoint);
+    
+    try {
+        userPoint = userPoint + vPoint
+        req.session.user.point = userPoint
+        console.log(userPoint);
+        const newPoint = await axios.put(`https://backend2.wisnuputra.xyz/api/user/${userId}/update-point`, { point: userPoint })
+        console.log(newPoint.status);
+        res.redirect('/to-user');
+    } catch (err) {
+        res.status(400).send(`${err.message}`)
+    }
+
 
 })
 
@@ -214,7 +238,7 @@ app.post('/send-journal', checkAuth, async (req, res) => {
     const userPoint = req.session.user.point
     console.log(userPoint + 'ini point');
     try {
-        const journal = await axios.post('http://172.25.116.217:8000/api/journal', { userId, content })
+        const journal = await axios.post('https://backend2.wisnuputra.xyz/api/journal', { userId, content })
         const errorLog = journal.data.error
         console.log(journal);
         if (journal.status === 201) {
@@ -224,7 +248,7 @@ app.post('/send-journal', checkAuth, async (req, res) => {
                 const plusPoint = userPoint + 5
                 console.log(plusPoint);
                 req.session.user.point = plusPoint
-                const newPoint = await axios.put(`http://172.25.116.217:8000/api/user/${userId}/update-point`, { point: plusPoint })
+                const newPoint = await axios.put(`https://backend2.wisnuputra.xyz/api/user/${userId}/update-point`, { point: plusPoint })
                 console.log(`Users point updated to ${req.session.user.point}`);
                 console.log(newPoint);
                 res.redirect('/journal')

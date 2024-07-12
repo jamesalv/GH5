@@ -12,6 +12,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         .card {
             flex-shrink: 0;
@@ -42,7 +44,7 @@
 
     <nav class="navbar">
         <div class="container-fluid">
-            <img src="assets/img/newLogo.png" alt="" width="50">
+            <img src="assets/img/SecondChanceLogoV2.png" width="250" height="100%">
             <form class="d-flex">
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
@@ -65,87 +67,145 @@
         </div>
     </nav>
 
-    <div class="container-fluid"
-        style="padding-top: 80px;background-image: linear-gradient(to bottom,#FFA823, #FFD35A);height: 100vh;">
+    <section class="jumbotron text-center">
+        <div class="container d-flex justify-content-center align-items-center" style="gap: 35px;">
+            <div>
+                <h1 class="jumbotron-heading">Hello, <%= user.name %>
+                </h1>
+                <h1><span class="badge text-bg-light" style="font-weight: lighter;">
+                        <%= user.point %> Point
+                    </span></h1>
+            </div>
+
+            <div class="d-flex align-items-center mr-2" style="height: 100%;">
+                <i class="fas fa-user fa-4x bg-dark text-white p-4 rounded-circle d-flex justify-content-center align-items-center"
+                    style="height: 100%;"></i>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-12 d-flex">
-                <div style="padding: 10px;border-radius: 10px;color: white;">
-                    <h1 style="margin: 0;">Hello, <%= user.name %> <span class="badge text-bg-light"
-                                style="font-weight: lighter;">
-                                <%= user.point %> Point
-                            </span></h1>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top"
+                        data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                        alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                        src="./assets/img/beachCleanup.png">
+                    <div class="card-body">
+                        <h5 style="font-weight: bolder;">beachCleanup</h5>
+                        <p class="card-text">Join us for a day of cleaning up our
+                            beautiful beaches! Help remove trash and debris to keep our shores pristine and safe for
+                            wildlife.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary joinBtn" onclick="">Join
+                                    Event</button>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <small class="text-muted">Saturday, August 10th</small>
+                                <small class="text-muted">9:00 AM - 12:00 PM</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top"
+                        data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                        alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                        src="./assets/img/SoupKitchenVolunteer.png">
+                    <div class="card-body">
+                        <h5 style="font-weight: bolder;">Soup Kitchen Volunteer Day</h5>
+                        <p class="card-text">Spend your day helping to prepare and serve
+                            meals to those in need. Your efforts will provide a warm meal and a friendly face to the
+                            community.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary joinBtn" onclick="">Join
+                                    Event</button>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <small class="text-muted">Sunday, August 18th, </small>
+                                <small class="text-muted">11:00 AM - 2:00 PM</small>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top"
+                        data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                        alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                        src="./assets/img/ParkBeautification.jpg">
+                    <div class="card-body">
+                        <h5 style="font-weight: bolder;">Park Beautification Project</h5>
+                        <p class="card-text">Help us make our local park a more beautiful
+                            place! Activities include planting flowers, painting benches, and picking up litter..</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary joinBtn" onclick="">Join
+                                    Event</button>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <small class="text-muted">Saturday, September 7th</small>
+                                <small class="text-muted">8:00 AM - 11:00 AM</small>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top"
+                        data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                        alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                        src="./assets/img/ElderlyVisit.jpg">
+                    <div class="card-body">
+                        <h5 style="font-weight: bolder;">Elderly Home Visit</h5>
+                        <p class="card-text">Spend quality time with the elderly residents
+                            of Sunnyvale Retirement Home. Engage in conversations, play games, and bring joy to
+                            their day.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary joinBtn" onclick="">Join
+                                    Event</button>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <small class="text-muted">Saturday, August 10th</small>
+                                <small class="text-muted">9:00 AM - 12:00 PM</small>
+                            </div>
 
-
-            <div class="col-12 mt-5 mb-3 d-flex">
-                <div style="padding: 15px;color: white;">
-                    <h2>Community Service</h2>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-12" style="padding: 15px;">
-                <div style="display: flex;flex-wrap: nowrap;overflow-x: scroll;">
-                    <div class="card d-flex align-items-center"
-                        style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/beachCleanup.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-weight: 300;">Beach Cleanup Extravaganza</h5>
-                            <p class="card-text" style="font-weight: 700;">Join us for a day of cleaning up our
-                                beautiful beaches! Help remove trash and debris to keep our shores pristine and safe for
-                                wildlife.</p>
-                            <p>Saturday, August 10th, 9:00 AM - 12:00 PM</p>
-                            <p>Sunny Beach, Main Entrance</p>
-                        </div>
-                    </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top"
+                        data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                        alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                        src="./assets/img/GardenPlanting.jpg">
+                    <div class="card-body">
+                        <h5>Community Garden Planting</h5>
+                        <p class="card-text">Get your hands dirty by helping to plant and
+                            maintain a community garden. This initiative promotes local food production and green
+                            spaces.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary joinBtn" onclick="">Join
+                                    Event</button>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <small class="text-muted">Saturday, September 14th</small>
+                                <small class="text-muted">10:00 AM - 1:00 PM</small>
+                            </div>
 
-                    <div class="card d-flex align-items-center"
-                        style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/SoupKitchenVolunteer.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-weight: 300;">Soup Kitchen Volunteer Day</h5>
-                            <p class="card-text" style="font-weight: 700;">Spend your day helping to prepare and serve
-                                meals to those in need. Your efforts will provide a warm meal and a friendly face to the
-                                community.</p>
-                            <p>Sunday, August 18th, 11:00 AM - 2:00 PM</p>
-                            <p>Hope Community Soup Kitchen, 1234 Charity Street</p>
-                        </div>
-                    </div>
-
-                    <div class="card d-flex align-items-center"
-                        style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/ParkBeautification.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-weight: 300;">Park Beautification Project</h5>
-                            <p class="card-text" style="font-weight: 700;">Help us make our local park a more beautiful
-                                place! Activities include planting flowers, painting benches, and picking up litter.</p>
-                            <p>Saturday, September 7th, 8:00 AM - 11:00 AM</p>
-                            <p>Greenfield Park, Oak Grove Pavilion</p>
-                        </div>
-                    </div>
-
-                    <div class="card d-flex align-items-center"
-                        style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/ElderlyVisit.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-weight: 300;">Elderly Home Visit</h5>
-                            <p class="card-text" style="font-weight: 700;">Spend quality time with the elderly residents
-                                of Sunnyvale Retirement Home. Engage in conversations, play games, and bring joy to
-                                their day.</p>
-                            <p>Wednesday, August 21st, 3:00 PM - 5:00 PM</p>
-                            <p>Sunnyvale Retirement Home, 5678 Golden Years Lane</p>
-                        </div>
-                    </div>
-                    <div class="card d-flex align-items-center"
-                        style="width: 18rem;padding: 15px 0;border-radius: 15px;;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                        <img class="card-img-top" src="./assets/img/GardenPlanting.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-weight: 300;">Community Garden Planting</h5>
-                            <p class="card-text" style="font-weight: 700;">Get your hands dirty by helping to plant and
-                                maintain a community garden. This initiative promotes local food production and green
-                                spaces.</p>
-                            <p>Saturday, September 14th, 10:00 AM - 1:00 PM</p>
-                            <p>Riverside Community Garden, Garden Plot 12</p>
                         </div>
                     </div>
                 </div>
@@ -153,36 +213,24 @@
         </div>
     </div>
 
-    <!-- <div class="text-center pt-5 pb-4" style="background-image: linear-gradient(to bottom, #FFD35A, #FFA823);">
-        <h1 style="color: white;">Video</h1>
-        <div class="container"
-            style="background-color: white;margin-top: 20px;height: 400px;margin-bottom: 100px;overflow: scroll;padding: 50px;border-radius: 10px;">
-            <div
-                style="background-color: #FFD35A;width: 85%;margin: 0 auto;margin-bottom: 80px;border-radius: 10px;padding: 10px;">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 col-md-6 col d-flex justify-content-center">
-                            <img src="Untitled.svg" alt="" width="400px">
-                        </div>
-                        <div
-                            class="col-12 col-md-6 d-flex justify-content-center align-items-center flex-column text-start">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere repellendus qui vitae
-                                doloribus iure pariatur voluptates consectetur nemo, deserunt odit nesciunt molestiae a
-                                aliquam aliquid libero ad itaque ipsam dicta?</p>
-                            <button type="button" class="btn btn-outline-dark" style="font-weight: bolder;">Watch
-                            </button>
-                            <span class="badge badge-pill badge-dark" style="color: black;">50</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <script>
+        const volunteerBtn = document.querySelectorAll('.joinBtn')
+        console.log(volunteerBtn);
+        volunteerBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.location.href = 'VolunteerForm.html'
+                console.log('tes');
+            })
+        })
+
+
+    </script>
 
 </body>
 
