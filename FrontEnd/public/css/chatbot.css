@@ -1,0 +1,23 @@
+/* Custom Styles for Chatbot */
+#chat-container {
+  background-color: #fff;
+  max-width: 75%;
+}
+
+#chat-container #chat-box {
+  padding: 10px;
+}
+
+#chat-container .message-content {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+#chat-container .user-icon img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
