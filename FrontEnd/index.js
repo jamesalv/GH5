@@ -5,8 +5,12 @@ const session = require('express-session');
 const bodyParser = require('body-parser')
 const dirname = path.resolve()
 const flash = require('express-flash')
+const cors = require("cors")
+require("dotenv").config();
+
 
 const app = express()
+app.use(cors({origin:'*'}));
 app.use(flash())
 
 app.use(session({
@@ -40,7 +44,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    res.render('login')
+    return res.render('login');
 })
 
 app.get('/journal', checkAuth, async (req, res) => {
@@ -49,12 +53,12 @@ app.get('/journal', checkAuth, async (req, res) => {
     try {
         const response = await axios.get(`https://backend2.wisnuputra.xyz/api/journal/${userId}`);
         const journals = response.data;
-        console.log(journals);
-        res.render('journal', { user: req.session.user, journals });
+        //console.log(journals);
+        return res.render('journal', { user: req.session.user, journals });
     } catch (err) {
-        console.error(err);
+        //console.error(err);
         req.flash('error', 'Failed to fetch journals.');
-        res.redirect('/');
+        return res.redirect('/');
     }
 })
 
@@ -126,11 +130,11 @@ app.get('/course-track', (req, res) => {
 app.get('/course-track/:courseId', async (req, res) => {
 
     const courseId = req.params.courseId
-    console.log(courseId);
+    //console.log(courseId);
 
     try {
         const course = await axios.get(`https://backend2.wisnuputra.xyz/api/course/${courseId}`)
-        console.log(course.data[0]);
+        //console.log(course.data[0]);
         const obj1 = course.data[0];
         res.render('coursetrack', { course: obj1 })
     } catch (err) {
@@ -144,17 +148,17 @@ app.get('/to-chat', checkAuth, (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-
+    console.log(req.body);
     const { username, password } = req.body;
 
     try {
         const login = await axios.post('https://backend2.wisnuputra.xyz/api/auth/login', { username, password })
-        console.log(login);
+        //console.log(login);
         if (login.status === 200) {
             const userData = login.data
             req.session.user = userData.user[0]
             // console.log(req.session.user);
-            console.log(userData.user[0]);
+            //console.log(userData.user[0]);
             res.render('user', { user: req.session.user })
         }
     } catch (err) {
@@ -163,21 +167,21 @@ app.post('/login', async (req, res) => {
 })
 
 app.post('/register', async (req, res) => {
-
+    console.log(req.body);
     const { username, name, age, gender, password } = req.body
     console.log(gender);
 
     try {
         const newUser = await axios.post('https://backend2.wisnuputra.xyz/api/auth/register', { username, name, age, gender, password })
-        console.log(username, name, age, gender, password);
-        console.log(newUser.status);
+        //console.log(username, name, age, gender, password);
+        //console.log(newUser.status);
         if (newUser.status === 201) {
             res.redirect('/login')
         } else {
             res.status(400).send('registered failed')
         }
     } catch (err) {
-        console.log(err);
+        //console.log(err);
         res.status(400).send(`error : ${err.message}`)
     }
 
@@ -196,9 +200,9 @@ app.post('/updatePoint', checkAuth, async (req, res) => {
     try {
         userPoint = userPoint + intPoint
         req.session.user.point = userPoint
-        console.log(userPoint);
+        //console.log(userPoint);
         const newPoint = await axios.put(`https://backend2.wisnuputra.xyz/api/user/${userId}/update-point`, { point: userPoint })
-        console.log(newPoint.status);
+        //console.log(newPoint.status);
         res.redirect('/to-course');
     } catch (err) {
         res.status(400).send(`${err.message}`)
@@ -210,18 +214,18 @@ app.post('/volunteerPoint', async (req, res) => {
 
     const userId = req.session.user.id;
     let userPoint = req.session.user.point
-    console.log(userId, userPoint);
+    //console.log(userId, userPoint);
 
     const vPoint = 25;
 
-    console.log(vPoint);
+    //console.log(vPoint);
     
     try {
         userPoint = userPoint + vPoint
         req.session.user.point = userPoint
-        console.log(userPoint);
+        //console.log(userPoint);
         const newPoint = await axios.put(`https://backend2.wisnuputra.xyz/api/user/${userId}/update-point`, { point: userPoint })
-        console.log(newPoint.status);
+        //console.log(newPoint.status);
         res.redirect('/to-user');
     } catch (err) {
         res.status(400).send(`${err.message}`)
@@ -236,24 +240,24 @@ app.post('/send-journal', checkAuth, async (req, res) => {
 
     const userId = req.session.user.id;
     const userPoint = req.session.user.point
-    console.log(userPoint + 'ini point');
+    //console.log(userPoint + 'ini point');
     try {
         const journal = await axios.post('https://backend2.wisnuputra.xyz/api/journal', { userId, content })
         const errorLog = journal.data.error
-        console.log(journal);
+        //console.log(journal);
         if (journal.status === 201) {
             try {
                 // const currentPoints = userPoint
                 // currentPoints = currentPoints + 5
                 const plusPoint = userPoint + 5
-                console.log(plusPoint);
+                //console.log(plusPoint);
                 req.session.user.point = plusPoint
                 const newPoint = await axios.put(`https://backend2.wisnuputra.xyz/api/user/${userId}/update-point`, { point: plusPoint })
-                console.log(`Users point updated to ${req.session.user.point}`);
-                console.log(newPoint);
+                //console.log(`Users point updated to ${req.session.user.point}`);
+                //console.log(newPoint);
                 res.redirect('/journal')
             } catch (err) {
-                console.log(err);
+                //console.log(err);
                 req.flash('error', `${err}`)
             }
         } else {
@@ -263,14 +267,12 @@ app.post('/send-journal', checkAuth, async (req, res) => {
     } catch (err) {
         req.flash('error', 'Journal submission failed !. Please try again !')
         res.status(400).send(`error: ${err.message}`)
-        console.log(err);
+        //console.log(err);
         req.flash('error', 'An error occurred while submiting your journal')
         res.redirect('/')
     }
-
 })
 
-
-app.listen(5000, "0.0.0.0", () => {
-    console.log('server is running on port 5000');
+app.listen(process.env.PORT, "0.0.0.0", () => {
+    console.log(`server is running on port  ${process.env.PORT}`);
 });
