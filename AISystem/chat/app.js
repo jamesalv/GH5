@@ -8,6 +8,9 @@ app.use(express.json());
 
 app.post('/',async (req,res)=>{
     try{
+
+        
+
         const respond = await chat(req.body.input);
         return res.status(200).send({message:respond});
     }

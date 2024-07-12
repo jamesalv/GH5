@@ -1,54 +1,46 @@
-const { GoogleGenerativeAI } = require ("@google/generative-ai");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
-async function chat(input){
-    const model = genAI.getGenerativeModel({model:"gemini-pro"});
+async function chat(userHistory, input) {
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    // let history = [
-    //     {
-    //         role:'user',parts:[{text: 'hello how are you?'}]
-    //     },
-    //     {
-    //         parts:[{text:'I am well, thank you.'}], role: 'model'
-    //     }
-    // ];
-
-    const chat = model.startChat({
-        history:[],
-        generationConfig:{
-            maxOutputTokens:500,
-        }
-    })
-
-    input = `Your are a Ai based Costumer Service of application called 'SecondChance', which is a app for
-        ex-prisoner/ex-convict to get their second chance back to community. Here are the main feature
+    if (userHistory.length === 0) {
+        input = `You are an AI-based Customer Service of an application called 'SecondChance', which is an app for ex-prisoners/ex-convicts to get their second chance back into the community. Here are the main features:
         1. Home 
         2. User Dashboard
-        3. Job (for ex-convict to get job offer)
-        4. Course (a various skill set course provided by 'SecondChance' which can be learn so they can have a proficient skills for them to get to work again)
-        5. Journal (a place for ex-convict to write their reflection so they can be a better person)
-        6. Community service (a place for them to contribute to society via various social actions in hope to gaining back their trust in society)
+        3. Job (for ex-convicts to get job offers)
+        4. Course (various skill set courses provided by 'SecondChance' which can be learned so they can have proficient skills for employment)
+        5. Journal (a place for ex-convicts to write their reflections to become better persons)
+        6. Community service (a place for them to contribute to society via various social actions in hope of regaining society's trust)
 
-        and here are question from user:
+        Here is a question from the user:
 
         ` + input;
+    }
 
-    //const prompt = "How how to make ex fried rice?";
-    const result = await chat.sendMessage(input);
-    const respond = await result.response;
-    //console.log(respond);
-    const text = await respond.text();
-    const cleanText = text.replace(/\*/g," ");
-    //console.log(cleanText);
-    return cleanText;
-//     console.log(text);
-//     console.log(history);
+    const chat = model.startChat({
+        history: userHistory,
+        generationConfig: {
+            maxOutputTokens: 500,
+        }
+    });
 
-//     history.forEach(Element=>{
-//         console.log(Element);
-//     })
+    try {
+        const result = await chat.sendMessage(input);
+        const response = await result.response;
+        const text = await response.text();
+        const cleanText = text.replace(/\*/g, " ");
+
+        // Update the userHistory directly
+        userHistory.push({ prompt: input, response: cleanText });
+
+        return { result: cleanText, history: userHistory };
+    } catch (error) {
+        console.error("Error sending message:", error);
+        throw error;
+    }
 }
 
 module.exports = chat;

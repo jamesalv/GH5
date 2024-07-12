@@ -17,6 +17,7 @@ router.put('/',async (req,res)=>{
 router.put('/:id/update-point',async (req,res)=>{
     try{
         const {id} = req.params;
+        console.log(`${id} ${req.body.point} database`);
         await updateUserPoint(id,req.body.point);
         return res.status(200).send({message:`sucessfully update user point`});
     }

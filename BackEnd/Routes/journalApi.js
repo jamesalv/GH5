@@ -9,9 +9,9 @@ router.post('/',async (req,res)=>{
         const validateJournal = await journal_validate(req.body.content);
         console.log(validateJournal);
         console.log(validateJournal.success);
-        if(validateJournal.success !== 'Journal is valid')
-
-            return res.status(400).send(validateJournal);
+        if(validateJournal.success !== 'Journal is valid'){
+            return res.status(200).send(validateJournal);
+        }
 
         await createNewJournal(req.body)
         return res.status(201).send({message:`sucessfully create new journal`});

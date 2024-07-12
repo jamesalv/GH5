@@ -90,9 +90,10 @@ async function getUserCourseHistoryById(id){
 }
 
 async function updateUserPoint(id,point){
+    console.log(`${id} ${point} database`);
     const connection = await getConnection();
     try{
-        const SQL = `UPDATE users SET point = point + ? WHERE id = ?`;
+        const SQL = `UPDATE users SET point = ? WHERE id = ?`;
         const statement = [point,id];
         const [result] = await connection.execute(SQL,statement);
         //console.log(result);
