@@ -10,3 +10,6 @@ Valid journaling input is an input that meets this criteria:
 - The input is a string
 - At least 50 meaningful words (not stopwords)
 - Passed the similarity check to previous data as journaling input (threshold at 40%)
+
+Dataset Source:
+https://www.kaggle.com/datasets/madhavmalhotra/journal-entries-with-labelled-emotions
